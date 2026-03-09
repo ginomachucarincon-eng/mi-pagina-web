@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Eventos FTTH</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a10 10 0 0 1 0 20"/><path d="M4.93 4.93l14.14 14.14"/></svg>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="#" class="nav-item" title="Dashboard">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+        <span>DASH</span>
+      </a>
+      <a href="#" class="nav-item active" title="FTTH">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        <span>FTTH</span>
+        <span class="nav-badge">75</span>
+      </a>
+      <a href="#" class="nav-item" title="RAN">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1.5 8.5l5 5 4-4 7 7 5-5"/></svg>
+        <span>RAN</span>
+      </a>
+      <a href="#" class="nav-item" title="CORE">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
+        <span>CORE</span>
+      </a>
+      <a href="#" class="nav-item" title="AD">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+        <span>AD</span>
+      </a>
+    </nav>
+  </aside>
+
+  <!-- MAIN -->
+  <div class="main-wrapper">
+
+    <!-- TOPBAR -->
+    <header class="topbar">
+      <div class="breadcrumb">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        <span class="sep">›</span>
+        <strong>Eventos FTTH</strong>
+      </div>
+      <button class="icon-btn" title="Refrescar" onclick="loadTable()">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 4v6h-6"/><path d="M1 20v-6h6"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M20.49 15a9 9 0 0 1-14.85 3.36L1 14"/></svg>
+      </button>
+    </header>
+
+    <!-- KPI CARDS -->
+    <section class="kpi-section">
+      <div class="kpi-card" id="card-total">
+        <div class="kpi-icon-wrap blue-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        </div>
+        <div>
+          <div class="kpi-num" id="kpi-total">3999</div>
+          <div class="kpi-lbl">TOTAL</div>
+        </div>
+        <div class="kpi-stripe blue-stripe"></div>
+      </div>
+
+      <div class="kpi-card" id="card-open">
+        <div class="kpi-icon-wrap red-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        </div>
+        <div>
+          <div class="kpi-num" id="kpi-open">75</div>
+          <div class="kpi-lbl">ABIERTOS</div>
+        </div>
+        <div class="kpi-status red-status">● ACTIVOS</div>
+        <div class="kpi-stripe red-stripe"></div>
+      </div>
+
+      <div class="kpi-card" id="card-pending">
+        <div class="kpi-icon-wrap orange-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <div>
+          <div class="kpi-num" id="kpi-pending">0</div>
+          <div class="kpi-lbl">PENDIENTES</div>
+        </div>
+        <div class="kpi-stripe orange-stripe"></div>
+      </div>
+
+      <div class="kpi-card" id="card-closed">
+        <div class="kpi-icon-wrap green-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <div>
+          <div class="kpi-num" id="kpi-closed">3924</div>
+          <div class="kpi-lbl">CERRADOS</div>
+        </div>
+        <div class="kpi-stripe green-stripe"></div>
+      </div>
+
+      <div class="kpi-card" id="card-gdi">
+        <div class="kpi-icon-wrap yellow-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        </div>
+        <div>
+          <div class="kpi-num" id="kpi-gdi">0</div>
+          <div class="kpi-lbl">EN GDI +40MIN</div>
+        </div>
+        <div class="kpi-status yellow-status">● ATENCIÓN</div>
+        <div class="kpi-stripe yellow-stripe"></div>
+      </div>
+    </section>
+
+    <!-- FILTERS -->
+    <section class="filters-section">
+      <div class="filter-item">
+        <label>▼ ESTADO ALARMA</label>
+        <select id="f-alarma"><option>Todos</option><option>ABIERTO</option><option>CERRADO</option></select>
+      </div>
+      <div class="filter-item">
+        <label>☁ ESTADO REMEDY</label>
+        <select id="f-remedy"><option>Todos</option><option>ASSIGNED</option><option>CLOSED</option><option>CANCELLED</option></select>
+      </div>
+      <div class="filter-item">
+        <label>⚡ TIPO CAÍDA</label>
+        <select id="f-tipo"><option>Todos</option><option>P. TOTAL</option><option>P. PARCIAL</option></select>
+      </div>
+      <div class="filter-item">
+        <label>📋 DIAGNÓSTICO</label>
+        <select id="f-diag"><option>Todos</option><option>Corte de energía</option><option>Corte de fibra</option></select>
+      </div>
+      <div class="filter-item">
+        <label>📅 DESDE</label>
+        <input type="datetime-local" id="f-desde"/>
+      </div>
+      <div class="filter-item">
+        <label>📅 HASTA</label>
+        <input type="datetime-local" id="f-hasta"/>
+      </div>
+      <div class="filter-btns">
+        <button class="f-btn f-search" onclick="applyFilters()" title="Buscar">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </button>
+        <button class="f-btn f-clear" onclick="clearFilters()" title="Limpiar">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+        <button class="f-btn f-export" onclick="exportCSV()" title="Exportar CSV">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        </button>
+      </div>
+    </section>
+
+    <!-- TABLE HEADER BAR -->
+    <div class="table-bar">
+      <div class="show-records">
+        Mostrar
+        <select id="page-size" onchange="changePageSize(this.value)">
+          <option value="10">10</option>
+          <option value="25" selected>25</option>
+          <option value="50">50</option>
+          <option value="100">100</option>
+        </select>
+        registros
+      </div>
+      <div class="refresh-info">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <span id="last-update">Actualizado: 11:48:00 p. m.</span>
+        <span class="countdown-chip" id="countdown">4:52</span>
+        <label class="toggle">
+          <input type="checkbox" id="auto-toggle" checked onchange="toggleAuto(this.checked)">
+          <span class="tog-slider"></span>
+        </label>
+      </div>
+      <div class="global-search">
+        Buscar: <input type="text" id="g-search" oninput="searchTable(this.value)"/>
+      </div>
+    </div>
+
+    <!-- TABLE -->
+    <div class="table-scroll">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th data-col="incidencia">INCIDENCIA <span>⇅</span></th>
+            <th data-col="elemento">ELEMENTO <span>⇅</span></th>
+            <th data-col="cod">CÓD. ÚNICO <span>⇅</span></th>
+            <th data-col="remedy">EST. REMEDY <span>⇅</span></th>
+            <th data-col="bandeja">BANDEJA ACTUAL <span>⇅</span></th>
+            <th data-col="tipo">TIPO CAÍDA <span>⇅</span></th>
+            <th data-col="alarma">EST. ALARMA <span>⇅</span></th>
+            <th data-col="fecha" class="sorted-desc">FECHA INICIO <span>↓</span></th>
+            <th data-col="duracion">DURACIÓN <span>⇅</span></th>
+            <th>DIAGNÓSTICO</th>
+            <th>PROGRESO</th>
+            <th>ACC.</th>
+          </tr>
+        </thead>
+        <tbody id="table-body"></tbody>
+      </table>
+    </div>
+
+    <!-- PAGINATION -->
+    <div class="pagination-row">
+      <span id="pag-info">Mostrando 1 a 5 de 5 registros</span>
+      <div class="pag-btns">
+        <button id="btn-prev" onclick="goPage(-1)">Anterior</button>
+        <span id="pag-pages"></span>
+        <button id="btn-next" onclick="goPage(1)">Siguiente</button>
+      </div>
+    </div>
+
+  </div><!-- /main-wrapper -->
+
+  <!-- MODAL DETAIL -->
+  <div class="modal-overlay" id="modal-overlay" onclick="closeModal()">
+    <div class="modal-box" onclick="event.stopPropagation()">
+      <div class="modal-head">
+        <h3 id="modal-inc-title">Detalle Incidencia</h3>
+        <button onclick="closeModal()">✕</button>
+      </div>
+      <div class="modal-content" id="modal-content"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
